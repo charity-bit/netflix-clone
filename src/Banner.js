@@ -5,11 +5,10 @@ import requests from "./Requests";
 
 function Banner() {
   const [movie, setMovie] = useState([]);
-  const [time, setTime] = useState(Date.now());
 
 
   useEffect(() => {
-    const interval = setInterval(() => setTime(Date.now()), 1000);
+
 
     async function fetchData() {
       const request = await axios.get(requests.fetchNetflixOriginals);
@@ -20,11 +19,7 @@ function Banner() {
           Math.floor(Math.random() * request.data.results.length - 1)
         ]
       );
-      return () => {
-    
-        clearInterval(interval);
-      };
-    
+     
     }
      fetchData();
   }, []);
